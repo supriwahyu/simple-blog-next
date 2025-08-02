@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import QuillEditor from '@/components/QuillEditor' // adjust path
 
 export default function CreatePostPage() {
   const router = useRouter()
@@ -103,17 +104,8 @@ export default function CreatePostPage() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Content</label>
-              <textarea
-                name="content"
-                value={form.content}
-                onChange={handleChange}
-                required
-                className="mt-1 w-full border rounded p-2"
-                rows={5}
-              />
-            </div>
+            <QuillEditor value={form.content} onChange={(value) => setForm(prev => ({ ...prev, content: value }))} />
+            <input type="hidden" name="content" value={form.content} />
 
             <div>
               <label className="block text-sm font-medium text-gray-700">Cover Image</label>
