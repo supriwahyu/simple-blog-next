@@ -38,14 +38,23 @@ export default function MyPostsPage() {
 }
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this post?')) return
-    try {
-      await axios.delete(`http://localhost:8000/api/post/${id}`)
-      setPosts(posts.filter((post) => post.id !== id))
-    } catch (error) {
-      console.error('Delete failed:', error)
-    }
+  if (!confirm('Are you sure you want to delete this post?')) return
+
+  const token = localStorage.getItem('token') // atau dari context/state
+
+  try {
+    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}api/master/post/destroy/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    setPosts(posts.filter((post) => post.id !== id))
+  } catch (error) {
+    console.error('Delete failed:', error)
   }
+}
+
 
   useEffect(() => {
     fetchPosts()
