@@ -1,12 +1,15 @@
+import { getAllBlogs, getBlogById } from '@/lib/blog'
 import BlogContent from '@/components/BlogContent'
-import { getBlogBySlug } from '@/lib/blog'
 
-export async function generateStaticParams() {
-  const blogs = await getAllBlogs()
-  return blogs.map((b) => ({ slug: b.slug }))
-}
+export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+  const allBlogs = await getAllBlogs()
+  const matched = allBlogs.find((b) => b.slug === params.slug)
 
-export default async function BlogDetail({ params }) {
-  const blog = await getBlogBySlug(params.slug)
-  return <BlogContent blog={blog} />
+  if (!matched) {
+    return <div className="text-red-600 text-center py-10">Post not found</div>
+  }
+
+  const blog = await getBlogById(matched.id.toString())
+
+  return blog ? <BlogContent blog={blog} /> : <div>Loading...</div>
 }
