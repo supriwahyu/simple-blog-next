@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import QuillEditor from '@/components/QuillEditor' // adjust path
+import dynamic from 'next/dynamic'
+const QuillEditor = dynamic(() => import('@/components/QuillEditor'), { ssr: false })
 
 export default function CreatePostPage() {
   const router = useRouter()

@@ -1,7 +1,9 @@
+// app/blog/[slug]/page.tsx
+
 import { getAllBlogs, getBlogById } from '@/lib/blog'
 import BlogContent from '@/components/BlogContent'
 
-export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+export default async function BlogDetailPage({ params }: any) {
   const allBlogs = await getAllBlogs()
   const matched = allBlogs.find((b) => b.slug === params.slug)
 
