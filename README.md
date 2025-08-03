@@ -2,6 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+langkah langkah penginstalan:
+
+- clone repository
+- cd repository
+- npm install di current folder repository
+- pastikan create .env dengan NEXT_PUBLIC_API_URL=http://localhost:8000/ untuk fetch di backend
+- npm run dev untuk mengaktifkan blog nya
+
 First, run the development server:
 
 ```bash
