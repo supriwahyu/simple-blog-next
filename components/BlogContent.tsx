@@ -14,9 +14,10 @@ export default function BlogContent({ blog }: { blog: BlogPost }) {
           className="w-full h-64 object-cover rounded-xl mb-6"
         />
       )}
-      <div className="prose prose-lg max-w-none">
-        {blog.content || 'No content available.'}
-      </div>
+      <div
+        className="prose prose-lg max-w-none"
+        dangerouslySetInnerHTML={{ __html: blog.content || '<p>No content available.</p>' }}
+      />
     </article>
   )
 }
