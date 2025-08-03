@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import axios from 'axios'
 import Sidebar from '@/components/Sidebar'
-import QuillEditor from '@/components/QuillEditor'
+import dynamic from 'next/dynamic'
+const QuillEditor = dynamic(() => import('@/components/QuillEditor'), { ssr: false })
 
 export default function EditPostPage() {
   const { id } = useParams()
@@ -38,7 +39,6 @@ export default function EditPostPage() {
           title: data.title,
           slug: data.slug,
           excerpt: data.excerpt,
-          content: data.content,
           cover_image: data.cover_image,
           content: data.detail.content,
         })
