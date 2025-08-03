@@ -17,7 +17,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('token') // Remove token or session
     setIsLoggedIn(false)
-    router.push('/login')
+    router.push('/')
   }
 
   return (
